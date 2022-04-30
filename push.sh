@@ -12,7 +12,7 @@ cd $work_dir
 
 cd $work_dir && git clone ssh://aur@aur.archlinux.org/$pkg_name.git
 
-[ $? -ne 0 ] && echo 'execute error!' && exit
+[ $? -ne 0 ] && echo 'execute error!' && exit 1
 [ ! -d $work_dir/$pkg_name ] && echo "$pkg_name project not exists!" && exit 1
 
 cd $work_dir && cp LICENSE PKGBUILD README.md $work_dir/$pkg_name
@@ -22,6 +22,10 @@ cd $work_dir/$pkg_name && $build --printsrcinfo > .SRCINFO
 
 # build
 cd $work_dir/$pkg_name && $build
+
+[ $? -ne 0 ] && echo 'build error!' && exit 1
+
+#cd $work_dir/$pkg_name && git add -A && git commit -m "$pkg_name" && git push -f
 
 
 
