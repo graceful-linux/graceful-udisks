@@ -2,10 +2,11 @@
 # Contributor: Ionut Biru <ibiru@archlinux.org>
 # Contributor: dingjing <dingjing@live.cn>
 
-pkgname=udisks2
+pkgname=graceful-udisks
+_pkgname=udisks2
 pkgver=2.9.4
 pkgrel=1
-pkgdesc="Disk Management Service, version 2"
+pkgdesc='原始项目: https://www.freedesktop.org/wiki/Software/udisks, 本项目仅用于个人调试，不能用于生产环境，否则会造成不可预估的损失，使用本包造成的损失由自己承担。'
 arch=('x86_64')
 url="https://github.com/graceful-linux/udisks"
 license=('GPL2')
@@ -20,7 +21,7 @@ sha512sums=('3836f6d2d6fe02eb9cccbb85d940bb5b4a07db1dafe7beba1f2ded110b04de03b1e
 
 prepare() {
   mv udisks-udisks-debug-$pkgver udisks-udisks-$pkgver 
-  cd udisks-udisks-debug-$pkgver
+  cd udisks-udisks-$pkgver
   NOCONFIGURE=1 ./autogen.sh
 }
 
